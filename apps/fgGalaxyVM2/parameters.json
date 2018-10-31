@@ -1,0 +1,12 @@
+{
+  "parameters": {
+    "instance_flavor": "small",
+    "storage_size": "10 GB"
+    "admin_email": "admin@admin.com",
+    "admin_api_key": "admin",
+    "instance_key_pub": "xxxxxxxxxxxxxxxxxxxx",
+    "version": "master",
+    "instance_description": "ELIXIR-ITA Galaxy test"
+  },
+  "callback": "http://paas-orchestrator.cloud.ba.infn.it:8080/callback" 
+}

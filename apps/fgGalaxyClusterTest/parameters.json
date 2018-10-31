@@ -1,0 +1,124 @@
+{
+  "version_of_portlet_description": 0.2,
+  "tabs": [
+      "Virtual hardware",
+      "Galaxy"
+  ],
+  "parameters": [
+    {
+      "display": "Galaxy server flavor, i.e. CPUs, memory size (RAM), root disk size",
+      "name": "fe_instance_flavor",
+      "type": "list",
+      "value": [
+        "medium",
+        "large",
+        "xlarge"
+      ],
+      "tab": 0
+    },
+    {
+      "display": "Worker nodes number",
+      "name": "wn_num",
+      "type": "list",
+      "value": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "10"
+      ],
+      "tab": 0
+    },
+    {
+      "display": "Worker nodes flavor, i.e. CPUs, memory size (RAM), root disk size",
+      "name": "wn_instance_flavor",
+      "type": "list",
+      "value": [
+        "medium",
+        "large",
+        "xlarge"
+      ],
+      "tab": 0
+    },
+
+    {
+      "display": "SSH public key",
+      "name": "instance_key_pub",
+      "type": "text",
+      "value": "Paste here your public key",
+      "tab": 0
+    },
+
+    {
+      "display": "Enable encryption",
+      "name": "galaxy_storage_type",
+      "type": "list",
+      "value": [
+        "plain",
+        "encryption"
+      ],
+      "tab": 0
+    },
+    { 
+      "display": "Volume storage size",
+      "name": "storage_size",
+      "type": "list",
+      "value": [
+        "50 GB",
+        "100 GB",
+        "200 GB",
+        "500 GB",
+        "1 TB"
+      ],
+      "tab": 0
+    },
+    {
+      "display": "Galaxy version",
+      "name": "version",
+      "type": "list",
+      "value": [
+        "release_17.05",
+        "release_18.05"
+      ],
+      "tab": 1
+    },
+    {
+      "display": "Instance description (Galaxy brand)",
+      "name": "instance_description",
+      "type": "text",
+      "value": "ELIXIR-ITALY",
+      "tab": 1
+    },
+    {
+      "display": "Galaxy administrator mail address",
+      "name": "admin_email",
+      "type": "text",
+      "value": "admin@elixir-italy.org",
+      "tab": 1
+    },
+    {
+      "display": "Galaxy flavor",
+      "name": "flavor",
+      "type": "list",
+      "value": [
+        "galaxy-minimal",
+        "galaxy-rna-workbench",
+        "galaxy-epigen",
+        "galaxy-GDC_Somatic_Variant",
+        "galaxy-testing"
+      ],
+      "tab": 1
+    },
+    {
+      "display": "Reference data repository",
+      "name": "refdata_cvmfs_repository_name",
+      "type": "list",
+      "value": [
+        "elixir-italy.galaxy.refdata",
+        "data.galaxyproject.org"
+      ],
+      "tab": 1
+    }
+  ]
+}
