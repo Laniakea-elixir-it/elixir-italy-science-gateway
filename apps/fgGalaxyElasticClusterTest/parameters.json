@@ -74,12 +74,12 @@
       "tab": 0
     },
     {
-      "display": "Galaxy version",
+      "display": "Galaxy version (release_18.05 recommended)",
       "name": "version",
       "type": "list",
       "value": [
-        "release_17.05",
-        "release_18.05"
+        "release_18.05",
+        "release_17.05"
       ],
       "tab": 1
     },
@@ -103,9 +103,10 @@
       "type": "list",
       "value": [
         "galaxy-minimal",
+        "galaxy-CoVaCS",
+        "galaxy-GDC_Somatic_Variant",
         "galaxy-rna-workbench",
         "galaxy-epigen",
-        "galaxy-GDC_Somatic_Variant",
         "galaxy-testing"
       ],
       "tab": 1
@@ -116,6 +117,7 @@
       "type": "list",
       "value": [
         "elixir-italy.galaxy.refdata",
+        "elixir-italy.covacs.refdata",
         "data.galaxyproject.org"
       ],
       "tab": 1
