@@ -211,6 +211,9 @@ topology_template:
               ftp_port:
                 protocol: tcp
                 source: 21
+              ftp_passive:
+                protocol: tcp
+                source_range: [ 30000, 30009 ]
         host:
           properties:
             instance_type: { get_input: fe_instance_flavor }
@@ -303,5 +306,3 @@ topology_template:
       value: { concat: [ 'http://', get_attribute: [ lrms_server, public_address, 0 ], '/galaxy' ] }
     cluster_ip:
       value: { get_attribute: [ lrms_server, public_address, 0 ] }
-    cluster_creds:
-      value: { get_attribute: [ lrms_server, endpoint, credential, 0 ] }
