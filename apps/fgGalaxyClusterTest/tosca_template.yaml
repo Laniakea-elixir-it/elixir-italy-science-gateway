@@ -85,7 +85,7 @@ topology_template:
     refdata_dir:
       type: string
       description: path to store galaxy reference data
-      default: /refdata
+      default: /cvmfs
     refdata_repository_name:
       type: string
       description: Onedata space name, CernVM-FS repository name or subdirectory downaload name
@@ -93,7 +93,7 @@ topology_template:
     refdata_provider_type:
       type: string
       description: Select Reference data provider type (Onedata, CernVM-FS or download)
-      default: 'cvmfs'
+      default: 'cvmfs_preconfigured'
     refdata_provider:
       type: string
       description: Oneprovider for reference data
@@ -191,12 +191,16 @@ topology_template:
               ftp_port:
                 protocol: tcp
                 source: 21
+              ftp_passive:
+                protocol: tcp
+                source_range: [ 30000, 30009 ]
         host:
           properties:
             instance_type: { get_input: fe_instance_flavor }
         os:
           properties:
-            image: centos-7-1708-galaxy-base
+            image: centos-7-galaxy-base
+            #image: centos-7_2nic
             #image: ubuntu-16.04-vmi
       requirements:
         # contextually this can only be a relationship type
@@ -223,6 +227,8 @@ topology_template:
         hybrid: { get_input: hybrid }
       requirements:
         - host: lrms_wn
+        # The worker node is configured after the galaxy_portal to share /export
+        # only after its configuration on WNs if wn_num_min>0
         - dependency: galaxy_portal
 
     galaxy_wn:
@@ -233,6 +239,7 @@ topology_template:
         flavor: { get_input: flavor }
         version: { get_input: version }
         reference_data: { get_input: reference_data }
+        refdata_provider_type: { get_input: refdata_provider_type }
         refdata_cvmfs_server_url: { get_input: refdata_cvmfs_server_url }
         refdata_cvmfs_repository_name: { get_input: refdata_cvmfs_repository_name }
         refdata_cvmfs_key_file: { get_input: refdata_cvmfs_key_file }
@@ -241,6 +248,8 @@ topology_template:
         refdata_dir: { get_input: refdata_dir }
       requirements:
         - host: lrms_wn
+        # The worker node is configured after the galaxy_portal to share /export
+        # only after its configuration on WNs if wn_num_min>0
         - dependency: wn_node
 
     lrms_wn:
@@ -254,7 +263,8 @@ topology_template:
             instance_type: { get_input: wn_instance_flavor }
         os:
           properties:
-            image: centos-7-1708-galaxy-base
+            image: centos-7-galaxy-base
+            #image: centos-7_2nic
             #image: ubuntu-16.04-vmi
 
   outputs:
@@ -262,5 +272,3 @@ topology_template:
       value: { concat: [ 'http://', get_attribute: [ lrms_server, public_address, 0 ], '/galaxy' ] }
     cluster_ip:
       value: { get_attribute: [ lrms_server, public_address, 0 ] }
-    cluster_creds:
-      value: { get_attribute: [ lrms_server, endpoint, credential, 0 ] }
